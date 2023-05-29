@@ -5,78 +5,78 @@ const MainDiv = styled.div`
   width: 100%;
   height: 90%;
   box-sizing: border-box;
-  display: flex;
 `;
 
 const ContentDiv = styled.div`
-  width: 800px;
-  height: 300px;
-  text-align: center;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 500px 300px;
-  grid-template-rows: 150px 150px;
-`;
-
-const ParagraphDiv = styled.div`
   width: 100%;
   height: 100%;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  grid-column-start: 1;
-  grid-column-end: 2;
-  padding: 50px 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+`;
+
+const ParagraphDiv = styled.div``;
+
+const FlexColDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  min-width: 400px;
+`;
+
+const FlexRowDiv = styled.div`
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
 `;
 
 const MainP = styled.p`
   margin: 0;
   box-sizing: border-box;
   color: white;
-  font-size: 30px;
+  font-size: max(25px, 4vw);
   font-weight: bold;
 `;
 
 const LemonSpan = styled.span`
   color: #f8fdbc;
-  font-size: 30px;
+  font-size: max(25px, 4vw);
 `;
 
 const BlitzImg = styled.img`
-  width: 200px;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 3;
-  margin: auto;
+  width: max(130px, 20vw);
+  height: max(130px, 20vw);
 `;
 
 const StyledBtn = styled.button`
-  width: 200px;
-  height: 40px;
+  width: 20vw;
+  min-width: 150px;
+  height: 5vh;
+  font-size: max(13, 1.5vw);
+  margin: auto;
   background-color: #2f323b;
   color: white;
   border-radius: 7px;
   border: none;
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 3;
-  margin: auto;
 `;
 
 const Main = () => {
   return (
     <MainDiv>
       <ContentDiv>
-        <ParagraphDiv>
-          <MainP>AI 기반 게임 트레이닝 서비스</MainP>
-          <MainP>
-            <LemonSpan>LolPAGO </LemonSpan>PLAYREPORT
-          </MainP>
-        </ParagraphDiv>
-
-        <BlitzImg src={Blitz} />
-        <StyledBtn>내 경기 분석하기</StyledBtn>
+        <FlexRowDiv>
+          <FlexColDiv>
+            <ParagraphDiv>
+              <MainP>AI 기반 게임 트레이닝 서비스</MainP>
+              <MainP>
+                <LemonSpan>LolPAGO </LemonSpan>PLAYREPORT
+              </MainP>
+            </ParagraphDiv>
+            <StyledBtn>내 경기 분석하기</StyledBtn>
+          </FlexColDiv>
+          <BlitzImg src={Blitz} />
+        </FlexRowDiv>
       </ContentDiv>
     </MainDiv>
   );
