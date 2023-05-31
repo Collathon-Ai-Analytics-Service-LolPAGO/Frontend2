@@ -1,6 +1,7 @@
 import { React } from "react";
 import styled from "@emotion/styled";
 import user from "../../Assets/profile-user.png";
+import { useNavigate } from "react-router-dom";
 
 const BannerDiv = styled.div`
   width: 100;
@@ -26,6 +27,7 @@ const SignUpTd = styled.td`
   color: white;
   text-decoration: underline;
   font-size: 12px;
+  cursor: pointer;
 `;
 
 const LoginTd = styled.td`
@@ -33,19 +35,35 @@ const LoginTd = styled.td`
   color: white;
   text-decoration: underline;
   font-size: 12px;
+  cursor: pointer;
 `;
 
 const UserTd = styled.td`
   width: 60px;
+  cursor: pointer;
 `;
-const Banner = () => {
+const Banner = ({ open, setOpen, openRef }) => {
+  const navigate = useNavigate();
+
+  const SignUp = () => {
+    navigate("/signup");
+  };
+
+  const Login = () => {
+    navigate("/login");
+  };
+
+  const Popup = () => {
+    setOpen(!open);
+  };
+
   return (
     <BannerDiv>
       <UserTable>
         <tr>
-          <SignUpTd>회원가입</SignUpTd>
-          <LoginTd>로그인</LoginTd>
-          <UserTd>
+          <SignUpTd onClick={SignUp}>회원가입</SignUpTd>
+          <LoginTd onClick={Login}>로그인</LoginTd>
+          <UserTd onClick={Popup} ref={openRef}>
             <UserImg src={user} alt="user" />
           </UserTd>
         </tr>
