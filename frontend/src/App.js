@@ -5,6 +5,7 @@ import Header from "./Components/Header";
 import Main from "./Components/Main";
 import SignUp from "./Components/SignUp";
 import Login from "./Components/Login";
+import Search from "./Components/Search";
 
 const Background = styled.div`
   width: 100%;
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
       </Background>
     </BrowserRouter>
