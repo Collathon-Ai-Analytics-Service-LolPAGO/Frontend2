@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { InputField, Button } from "./SignupComponents";
 import { errorText } from "../constants/ErrorMsg";
-
+import { useNavigate } from "react-router-dom";
 const MainDiv = styled.div`
   width: 100%;
   height: 90%;
@@ -10,8 +10,7 @@ const MainDiv = styled.div`
 `;
 
 const SignUpField = styled.div`
-  width: 50%;
-  min-width: 500px;
+  width: 500px;
   height: 70%;
   border: 1px solid white;
   border-radius: 10px;
@@ -56,6 +55,11 @@ const ButtonSection = styled.div`
 `;
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const SignUp = () => {
+    navigate("/signup");
+  };
   return (
     <MainDiv>
       <SignUpField>
@@ -68,7 +72,7 @@ const Login = () => {
         </InputFieldSection>
         <ButtonSection>
           <Button name="로그인" />
-          <Button name="회원가입" />
+          <Button name="회원가입" onClick={SignUp} />
         </ButtonSection>
       </SignUpField>
     </MainDiv>

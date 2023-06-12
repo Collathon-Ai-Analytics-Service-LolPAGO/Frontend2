@@ -10,8 +10,7 @@ const MainDiv = styled.div`
 `;
 
 const SignUpField = styled.div`
-  width: 50%;
-  min-width: 500px;
+  width: 500px;
   height: 70%;
   border: 1px solid white;
   border-radius: 10px;

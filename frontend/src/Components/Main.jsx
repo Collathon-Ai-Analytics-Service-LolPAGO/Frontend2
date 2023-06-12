@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import Blitz from "../Assets/Blitz.png";
-
+import { useNavigate } from "react-router-dom";
 const MainDiv = styled.div`
   width: 100%;
   height: 90%;
@@ -62,6 +62,11 @@ const StyledBtn = styled.button`
 `;
 
 const Main = () => {
+  const navigate = useNavigate();
+  const Analysis = () => {
+    navigate("/search");
+  };
+
   return (
     <MainDiv>
       <ContentDiv>
@@ -73,7 +78,7 @@ const Main = () => {
                 <LemonSpan>LolPAGO </LemonSpan>PLAYREPORT
               </MainP>
             </ParagraphDiv>
-            <StyledBtn>내 경기 분석하기</StyledBtn>
+            <StyledBtn onClick={Analysis}>내 경기 분석하기</StyledBtn>
           </FlexColDiv>
           <BlitzImg src={Blitz} />
         </FlexRowDiv>

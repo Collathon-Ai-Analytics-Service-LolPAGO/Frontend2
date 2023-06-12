@@ -18,6 +18,7 @@ const Header = () => {
   const openRef = useRef();
   const [open, setOpen] = useState(false);
 
+  /*
   useEffect(() => {
     const handleCloseModal = (e: MouseEvent) => {
       console.log(modalRef);
@@ -35,7 +36,7 @@ const Header = () => {
     window.addEventListener("mousedown", handleCloseModal);
     return () => window.removeEventListener("mousedown", handleCloseModal);
   }, [modalRef]);
-
+*/
   return (
     <HeaderBg>
       <Logo />

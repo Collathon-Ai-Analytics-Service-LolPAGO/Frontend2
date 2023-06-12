@@ -21,7 +21,9 @@ const InputParagraph = styled.p`
 `;
 
 const InputText = styled.input`
+  width: 58%;
   margin-left: 5%;
+  margin-right: 2%;
   background-color: inherit;
   border: none;
   font-size: 14px;
