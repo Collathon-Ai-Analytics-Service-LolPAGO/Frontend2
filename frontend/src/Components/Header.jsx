@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Banner, Logo, Menu, Popup } from "./HeaderComponents";
+import { Banner, Logo, Menu, Popup } from "Components/HeaderComponents";
 import { useEffect, useRef, useState } from "react";
 
 const HeaderBg = styled.div`
@@ -19,15 +19,11 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleCloseModal = (e: MouseEvent) => {
-      console.log(modalRef);
+    const handleCloseModal = (e) => {
       if (
         !openRef.current.contains(e.target) &&
-        modalRef.current &&
         !modalRef.current.contains(e.target)
       ) {
-        e.preventDefault();
-        e.stopPropagation();
         setOpen(false);
       }
     };

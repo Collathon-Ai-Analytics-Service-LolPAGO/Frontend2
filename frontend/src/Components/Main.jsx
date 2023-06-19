@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
-import Blitz from "../Assets/Blitz.png";
+import Blitz from "Assets/Blitz.png";
+import { useNavigate } from "react-router-dom";
 
 const MainDiv = styled.div`
   width: 100%;
   height: 90%;
+  background-color: #d9d9d9;
   box-sizing: border-box;
 `;
 
@@ -53,15 +55,25 @@ const StyledBtn = styled.button`
   width: 20vw;
   min-width: 150px;
   height: 5vh;
-  font-size: max(13, 1.5vw);
+  font-size: max(1vw, 18px);
+  font-weight: bold;
   margin: auto;
   background-color: #2f323b;
   color: white;
   border-radius: 7px;
   border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #202227;
+  }
 `;
 
 const Main = () => {
+  const navigate = useNavigate();
+  const navigateSearch = () => {
+    navigate("/search");
+  };
   return (
     <MainDiv>
       <ContentDiv>
@@ -73,9 +85,11 @@ const Main = () => {
                 <LemonSpan>LolPAGO </LemonSpan>PLAYREPORT
               </MainP>
             </ParagraphDiv>
-            <StyledBtn>내 경기 분석하기</StyledBtn>
+            <StyledBtn type="button" onClick={navigateSearch}>
+              내 경기 분석하기
+            </StyledBtn>
           </FlexColDiv>
-          <BlitzImg src={Blitz} />
+          <BlitzImg src={Blitz} alt="logo" />
         </FlexRowDiv>
       </ContentDiv>
     </MainDiv>

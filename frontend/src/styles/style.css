@@ -2,4 +2,5 @@
   content: attr(placeholder);
   pointer-events: none;
   display: block;
+  color: #969696;
 }

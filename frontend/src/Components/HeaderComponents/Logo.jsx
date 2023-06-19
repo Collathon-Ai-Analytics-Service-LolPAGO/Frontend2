@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import LOGO from "../../Assets/LOGO.png";
+import LOGO from "Assets/LOGO.png";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 

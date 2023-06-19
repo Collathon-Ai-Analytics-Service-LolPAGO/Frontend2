@@ -4,27 +4,31 @@ import { useState } from "react";
 const Field = styled.div`
   border: 1px solid white;
   border-radius: 15px;
-  display: flex;
-  width: 80%;
-  height: 20%;
-  align-items: center;
+  display: inline-block;
+  width: 500px;
+  height: 60px;
 `;
 
 const InputParagraph = styled.p`
   margin: 0;
-  font-size: 14px;
+  font-size: 18px;
   color: white;
   font-weight: bold;
-  padding-left: 5%;
   box-sizing: border-box;
   caret-color: white;
+  width: 150px;
+  line-height: 60px;
+  display: inline-block;
+  text-align: center;
+  border-right: 1px solid white;
 `;
 
 const InputText = styled.input`
   margin-left: 5%;
   background-color: inherit;
   border: none;
-  font-size: 14px;
+  font-size: 18px;
+  height: 100%;
   color: white;
   &:focus {
     outline: none;
@@ -35,8 +39,9 @@ const InputDate = styled.input`
   margin-left: 5%;
   background-color: inherit;
   border: none;
-  font-size: 14px;
+  font-size: 18px;
   color: white;
+  height: 100%;
 
   &::before {
     color: white;
@@ -44,11 +49,12 @@ const InputDate = styled.input`
 `;
 
 const ErrorMsg = styled.p`
-  width: 80%;
+  width: 500px;
+  line-height: 20px;
   color: red;
-  font-size: 10px;
+  font-size: 13px;
   text-align: left;
-  padding-left: 5%;
+  padding-left: 20px;
   box-sizing: border-box;
   margin: 5px 0;
   visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
@@ -56,14 +62,23 @@ const ErrorMsg = styled.p`
 
 const DuplicateBtn = styled.button`
   width: 15%;
+  height: 50%;
   background-color: white;
-  font-size: 10px;
+  font-size: 15px;
   color: black;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
 `;
 
-const InputField = ({ name, text, type, isDuplicate }) => {
+const InputField = ({
+  name,
+  text,
+  type,
+  isDuplicate,
+  placeholder,
+  ...props
+}) => {
   const [error, setError] = useState(true);
   return (
     <>
@@ -72,11 +87,13 @@ const InputField = ({ name, text, type, isDuplicate }) => {
         {type ? (
           <InputDate type={type} />
         ) : (
-          <InputText type="text" maxLength={20} />
+          <InputText type="text" maxLength={20} placeholder={placeholder} />
         )}
         {isDuplicate ? <DuplicateBtn>중복확인</DuplicateBtn> : <></>}
       </Field>
-      <ErrorMsg visible={error}>{text}</ErrorMsg>
+      <ErrorMsg visible={error} {...props}>
+        {text}
+      </ErrorMsg>
     </>
   );
 };

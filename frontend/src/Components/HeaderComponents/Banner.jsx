@@ -1,6 +1,6 @@
 import { React } from "react";
 import styled from "@emotion/styled";
-import user from "../../Assets/profile-user.png";
+import user from "Assets/profile-user.png";
 import { useNavigate } from "react-router-dom";
 
 const BannerDiv = styled.div`
@@ -18,7 +18,7 @@ const UserImg = styled.img`
 const UserTable = styled.table`
   width: 200px;
   height: 100%;
-  display: inline-block;
+  display: block;
   float: right;
 `;
 
@@ -26,16 +26,24 @@ const SignUpTd = styled.td`
   width: 70px;
   color: white;
   text-decoration: underline;
-  font-size: 12px;
+  font-size: 15px;
   cursor: pointer;
+
+  &:hover {
+    color: #f8fdbc;
+  }
 `;
 
 const LoginTd = styled.td`
   width: 70px;
   color: white;
   text-decoration: underline;
-  font-size: 12px;
+  font-size: 15px;
   cursor: pointer;
+
+  &:hover {
+    color: #f8fdbc;
+  }
 `;
 
 const UserTd = styled.td`

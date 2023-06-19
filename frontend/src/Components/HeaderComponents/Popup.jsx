@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const PopupDiv = styled.div`
-  width: 100px;
+  width: 150px;
   height: 160px;
   background-color: #8e8e8e;
   border: none;
@@ -22,12 +22,16 @@ const ContentDiv = styled.div`
   background-color: inherit;
   color: black;
   text-align: center;
-  border: 1px solid black;
-  font-size: 13px;
+  font-size: 15px;
   display: flex;
   place-content: center;
   align-items: center;
   cursor: pointer;
+  border-bottom: 1px solid #444444;
+
+  &:hover {
+    background-color: #777777;
+  }
 `;
 
 const TextP = styled.p`
@@ -37,8 +41,8 @@ const TextP = styled.p`
 const Popup = ({ open, setOpen, modalRef }) => {
   const navigate = useNavigate();
   const LoginFunc = () => {
-    navigate("/login");
     setOpen(false);
+    navigate("/login");
   };
   const [login, setLogin] = useState(false);
   return (
@@ -46,7 +50,7 @@ const Popup = ({ open, setOpen, modalRef }) => {
       <ContentDiv>개인정보 변경</ContentDiv>
       <ContentDiv>내 분석 리포트</ContentDiv>
       <ContentDiv>결제 정보</ContentDiv>
-      <ContentDiv onClick={LoginFunc}>
+      <ContentDiv onClick={LoginFunc} style={{ border: "none" }}>
         {login ? (
           <TextP>로그아웃</TextP>
         ) : (

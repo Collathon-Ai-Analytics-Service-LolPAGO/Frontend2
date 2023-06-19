@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { InputField, Button } from "./SignupComponents";
-import { errorText } from "../constants/ErrorMsg";
+import { InputField, Button } from "Components/SignupComponents";
+import { errorText } from "constants/ErrorMsg";
 
 const MainDiv = styled.div`
   width: 100%;
@@ -10,9 +10,8 @@ const MainDiv = styled.div`
 `;
 
 const SignUpField = styled.div`
-  width: 50%;
-  min-width: 500px;
-  height: 70%;
+  width: 650px;
+  height: 500px;
   border: 1px solid white;
   border-radius: 10px;
   display: flex;
@@ -22,7 +21,7 @@ const SignUpField = styled.div`
 `;
 
 const SignUpTitleSection = styled.div`
-  height: 20%;
+  height: 150px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -31,7 +30,7 @@ const SignUpTitleSection = styled.div`
 
 const SignUpTitle = styled.p`
   width: 50%;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
   color: white;
   text-decoration: underline;
@@ -40,7 +39,6 @@ const SignUpTitle = styled.p`
 
 const InputFieldSection = styled.div`
   width: 100%;
-  height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,7 +47,7 @@ const InputFieldSection = styled.div`
 
 const ButtonSection = styled.div`
   width: 100%;
-  height: 30%;
+  height: 50px;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
@@ -63,8 +61,18 @@ const Login = () => {
           <SignUpTitle>로그인</SignUpTitle>
         </SignUpTitleSection>
         <InputFieldSection>
-          <InputField name="이메일" text={errorText["email"]} />
-          <InputField name="비밀번호" text={errorText["password"]} />
+          <InputField
+            name="이메일"
+            text={errorText["email"]}
+            style={{ marginBottom: "30px" }}
+            placeholder="이메일을 입력해주세요."
+          />
+          <InputField
+            name="비밀번호"
+            text={errorText["password"]}
+            style={{ marginBottom: "30px" }}
+            placeholder="비밀번호를 입력해주세요."
+          />
         </InputFieldSection>
         <ButtonSection>
           <Button name="로그인" />
