@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
+import { MenuTd } from ".";
 
 const MenuDiv = styled.div`
   width: 100%;
@@ -11,37 +13,46 @@ const MenuDiv = styled.div`
 
 const MenuTable = styled.table`
   height: 70%;
+  width: 550px;
 `;
 
-const WhiteTd = styled.td`
-  color: white;
-  font-weight: bold;
-  display: inline-block;
-  border-right: 1px solid white;
-  text-align: center;
-  width: 120px;
-  height: 70%;
-`;
-
-const WhiteLastTd = styled.td`
-  color: white;
-  font-weight: bold;
-  display: inline-block;
-  text-align: center;
-  width: 120px;
-  height: 70%;
+const MenuTr = styled.tr`
+  min-width: 550px;
 `;
 
 const Menu = () => {
+  const navigate = useNavigate();
+  const MenuList = [
+    {
+      title: "ABOUT",
+      link: "about",
+      last: 0,
+    },
+    {
+      title: "소환사 검색",
+      link: "search",
+      last: 0,
+    },
+    {
+      title: "분석 리포트",
+      link: "analysis",
+      last: 0,
+    },
+    {
+      title: "마이페이지",
+      link: "mypage",
+      last: 1,
+    },
+  ];
+
   return (
     <MenuDiv>
       <MenuTable>
-        <tr>
-          <WhiteTd>ABOUT</WhiteTd>
-          <WhiteTd>소환사 검색</WhiteTd>
-          <WhiteTd>분석 리포트</WhiteTd>
-          <WhiteLastTd>마이페이지</WhiteLastTd>
-        </tr>
+        <MenuTr>
+          {MenuList.map((menu, idx) => (
+            <MenuTd key={idx} navigate={navigate} menu={menu} />
+          ))}
+        </MenuTr>
       </MenuTable>
     </MenuDiv>
   );

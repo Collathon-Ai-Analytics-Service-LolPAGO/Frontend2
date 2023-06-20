@@ -1,11 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import styled from "@emotion/styled";
-import Header from "./Components/Header";
-import Main from "./Components/Main";
-import SignUp from "./Components/SignUp";
-import Login from "./Components/Login";
-import Search from "./Components/Search";
+import { Header, Main, SignUp, Login, Search, Analysis } from "Components";
 
 const Background = styled.div`
   width: 100%;
@@ -15,6 +10,7 @@ const Background = styled.div`
   overflow-x: hidden;
   background-color: #171717;
   overflow-y: hidden;
+  font-family: "Inter", sans-serif;
 `;
 
 function App() {
@@ -27,6 +23,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/analysis/:nickname" element={<Analysis />} />
         </Routes>
       </Background>
     </BrowserRouter>

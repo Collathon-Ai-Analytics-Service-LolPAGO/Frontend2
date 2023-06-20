@@ -1,18 +1,21 @@
 import styled from "@emotion/styled";
-import search from "../../Assets/search.png";
-import enter from "../../Assets/enter.png";
+import search from "Assets/search.png";
+import enter from "Assets/enter.png";
+import "styles/style.css";
 
 const SearchDiv = styled.div`
-  width: 70%;
+  width: 100%;
   height: 50px;
   background-color: white;
   border-radius: 10px;
   display: flex;
   align-items: center;
+  margin: 0 auto;
+  margin-bottom: 3%;
 `;
 
 const IconDiv = styled.div`
-  width: 10%;
+  width: 7%;
   padding: 5px;
   box-sizing: border-box;
 `;
@@ -22,7 +25,6 @@ const TextDiv = styled.div`
 `;
 
 const Text = styled.p`
-  color: #969696;
   border: none;
 
   &:focus {

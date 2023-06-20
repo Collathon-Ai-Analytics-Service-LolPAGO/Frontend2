@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 const ErrorMsg = styled.p`
   color: red;
-  font-size: 13px;
+  font-size: 14px;
   margin: 0;
 `;
 

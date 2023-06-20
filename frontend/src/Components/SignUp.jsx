@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { InputField, Button } from "./SignupComponents";
-import { errorText } from "../constants/ErrorMsg";
+import { InputField, Button, GenderSelect } from "Components/SignupComponents";
+import { errorText } from "constants/ErrorMsg";
 
 const MainDiv = styled.div`
   width: 100%;
@@ -10,27 +10,30 @@ const MainDiv = styled.div`
 `;
 
 const SignUpField = styled.div`
-  width: 500px;
-  height: 70%;
+  width: 650px;
+  height: 700px;
   border: 1px solid white;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: auto;
+  padding: 0;
 `;
 
 const SignUpTitleSection = styled.div`
-  height: 20%;
+  height: 110px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  margin: 0;
 `;
 
 const SignUpTitle = styled.p`
   width: 50%;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
   color: white;
   text-decoration: underline;
@@ -48,7 +51,7 @@ const InputFieldSection = styled.div`
 
 const ButtonSection = styled.div`
   width: 100%;
-  height: 30%;
+  height: 50px;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
@@ -66,11 +69,25 @@ const SignUp = () => {
             name="이메일"
             isDuplicate="true"
             text={errorText["email"]}
+            placeholder="이메일을 입력해주세요."
           />
-          <InputField name="비밀번호" text={errorText["password"]} />
-          <InputField name="비밀번호 확인" text={errorText["pwCheck"]} />
+          <InputField
+            name="비밀번호"
+            text={errorText["password"]}
+            placeholder="비밀번호를 입력해주세요."
+          />
+          <InputField
+            name="비밀번호 확인"
+            text={errorText["pwCheck"]}
+            placeholder="비밀번호를 입력해주세요."
+          />
           <InputField type="date" name="생년월일" text={errorText["birth"]} />
-          <InputField name="롤 닉네임" text={errorText["nickname"]} />
+          <GenderSelect />
+          <InputField
+            name="롤 닉네임"
+            text={errorText["nickname"]}
+            placeholder="닉네임을 입력해주세요."
+          />
           <ButtonSection>
             <Button name="회원가입" />
           </ButtonSection>

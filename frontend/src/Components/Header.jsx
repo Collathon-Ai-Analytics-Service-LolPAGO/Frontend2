@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Banner, Logo, Menu, Popup } from "./HeaderComponents";
+import { Banner, Logo, Menu, Popup } from "Components/HeaderComponents";
 import { useEffect, useRef, useState } from "react";
 
 const HeaderBg = styled.div`
@@ -8,7 +8,6 @@ const HeaderBg = styled.div`
   min-height: 100px;
   min-width: 900px;
   display: grid;
-  //position: fixed;
   grid-template-columns: 400px;
   grid-template-rows: 50% 50%;
 `;
@@ -18,17 +17,12 @@ const Header = () => {
   const openRef = useRef();
   const [open, setOpen] = useState(false);
 
-  /*
   useEffect(() => {
-    const handleCloseModal = (e: MouseEvent) => {
-      console.log(modalRef);
+    const handleCloseModal = (e) => {
       if (
         !openRef.current.contains(e.target) &&
-        modalRef.current &&
         !modalRef.current.contains(e.target)
       ) {
-        e.preventDefault();
-        e.stopPropagation();
         setOpen(false);
       }
     };
@@ -36,7 +30,7 @@ const Header = () => {
     window.addEventListener("mousedown", handleCloseModal);
     return () => window.removeEventListener("mousedown", handleCloseModal);
   }, [modalRef]);
-*/
+
   return (
     <HeaderBg>
       <Logo />
