@@ -11,7 +11,7 @@ const MainDiv = styled.div`
 `;
 
 const ContentDiv = styled.div`
-  width: 50%;
+  width: max(50%, 500px);
   height: 60%;
 `;
 

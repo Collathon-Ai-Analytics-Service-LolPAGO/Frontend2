@@ -42,8 +42,13 @@ const UpdateBtn = styled.button`
   width: 100px;
   height: 80%;
   font-size: 15px;
-  border-radius: 10px;
+  border-radius: 7px;
   border: none;
+  background-color: #ccc;
+
+  &:hover {
+    background-color: #aaa;
+  }
 `;
 
 const Profile = ({ url, data }) => {
