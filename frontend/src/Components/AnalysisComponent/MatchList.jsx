@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import MatchListItem from "./MatchListItem";
+import { useEffect, useRef, useState } from "react";
 
 const MatchListDiv = styled.div`
   width: 100%;
@@ -59,10 +60,15 @@ const StyledButton = styled.button`
   border: none;
   background-color: #ccc;
   border-radius: 7px;
+
+  &:hover {
+    background-color: #aaa;
+  }
 `;
 
 const DUMMY_DATA = [
   {
+    id: 1,
     championName: "timo",
     assists: 10,
     deaths: 5,
@@ -73,6 +79,7 @@ const DUMMY_DATA = [
     time: "2일 전",
   },
   {
+    id: 2,
     championName: "nunu",
     assists: 18,
     deaths: 8,
@@ -83,6 +90,7 @@ const DUMMY_DATA = [
     time: "3일 전",
   },
   {
+    id: 3,
     championName: "nunu",
     assists: 18,
     deaths: 8,
@@ -93,6 +101,7 @@ const DUMMY_DATA = [
     time: "3일 전",
   },
   {
+    id: 4,
     championName: "nunu",
     assists: 18,
     deaths: 8,
@@ -103,6 +112,7 @@ const DUMMY_DATA = [
     time: "3일 전",
   },
   {
+    id: 5,
     championName: "nunu",
     assists: 18,
     deaths: 8,
@@ -113,6 +123,7 @@ const DUMMY_DATA = [
     time: "3일 전",
   },
   {
+    id: 6,
     championName: "nunu",
     assists: 18,
     deaths: 8,
@@ -123,6 +134,7 @@ const DUMMY_DATA = [
     time: "3일 전",
   },
   {
+    id: 7,
     championName: "nunu",
     assists: 18,
     deaths: 8,
@@ -135,6 +147,39 @@ const DUMMY_DATA = [
 ];
 
 const MatchList = () => {
+  const selectRef = useRef(false);
+  const [select, setSelect] = useState(
+    new Array(DUMMY_DATA.length).fill(false)
+  );
+
+  useEffect(() => {
+    /*
+    console.log(selectRef.current.checked);
+    let selected = true;
+    for (let i = 0; i < select.length; i++) {
+      if (!select[i]) {
+        selectRef.current.checked = false;
+        break;
+      }
+    }
+    if (selected) {
+      selectRef.current.checked = true;
+    }
+    */
+  }, [select]);
+
+  const changeSelect = (id, checked) => {
+    const newArr = select.map((s, idx) =>
+      parseInt(id) === idx + 1 ? checked : s
+    );
+    setSelect(newArr);
+  };
+
+  const AllSelect = (e) => {
+    const checked = e.target.checked;
+    setSelect(select.map((s) => checked));
+  };
+
   return (
     <>
       <MatchListDiv>
@@ -149,12 +194,16 @@ const MatchList = () => {
             <MatchListTitleText>경기 시간</MatchListTitleText>
           </MatchListTitleDiv>
           <MatchListTitleDiv width="calc(10% - 8px)">
-            <input type="checkbox"></input>
+            <input type="checkbox" onChange={AllSelect} ref={selectRef} />
           </MatchListTitleDiv>
         </MatchListHead>
         <MatchListBody>
-          {DUMMY_DATA.map((data) => (
-            <MatchListItem data={data}></MatchListItem>
+          {DUMMY_DATA.map((data, idx) => (
+            <MatchListItem
+              data={data}
+              changeSelect={changeSelect}
+              select={select[idx]}
+            ></MatchListItem>
           ))}
         </MatchListBody>
       </MatchListDiv>

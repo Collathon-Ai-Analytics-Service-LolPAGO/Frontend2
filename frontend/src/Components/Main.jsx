@@ -17,18 +17,21 @@ const ContentDiv = styled.div`
   align-items: center;
 `;
 
-const ParagraphDiv = styled.div``;
+const ParagraphDiv = styled.div`
+  height: 80%;
+`;
 
 const FlexColDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 60%;
+  height: 100%;
   min-width: 400px;
 `;
 
 const FlexRowDiv = styled.div`
   width: 100%;
-  height: 30%;
+  height: max(20vw, 130px);
   display: flex;
   justify-content: center;
 `;
@@ -52,10 +55,10 @@ const BlitzImg = styled.img`
 `;
 
 const StyledBtn = styled.button`
-  width: 20vw;
+  width: min(20vw, 200px);
   min-width: 150px;
-  height: 5vh;
-  font-size: max(1vw, 18px);
+  height: 20%;
+  font-size: max(1vw, 15px);
   font-weight: bold;
   margin: auto;
   background-color: #2f323b;
