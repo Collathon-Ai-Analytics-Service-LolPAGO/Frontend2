@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import search from "Assets/search.png";
 import enter from "Assets/enter.png";
 import "styles/style.css";
+import { useState } from "react";
 
 const SearchDiv = styled.div`
   width: 100%;
@@ -39,9 +40,24 @@ const SearchIcon = styled.img`
 
 const EnterIcon = styled.img`
   width: 25px;
+  cursor: pointer;
 `;
 
 const SearchSection = () => {
+  const [keyword, setKeyword] = useState();
+
+  const changeKeyword = (e) => {
+    setKeyword(e.target.innerHTML);
+  };
+
+  const startSearch = () => {
+    if (!keyword) {
+      alert("분석할 소환사 닉네임을 입력해주세요.");
+    } else {
+      alert("검색!");
+    }
+  };
+
   return (
     <>
       <SearchDiv>
@@ -52,10 +68,11 @@ const SearchSection = () => {
           <Text
             contentEditable="true"
             placeholder="분석할 소환사 닉네임을 입력해주세요."
+            onInput={changeKeyword}
           />
         </TextDiv>
         <IconDiv>
-          <EnterIcon src={enter} alt="enter" />
+          <EnterIcon src={enter} alt="enter" onClick={startSearch} />
         </IconDiv>
       </SearchDiv>
     </>

@@ -1,11 +1,10 @@
 import styled from "@emotion/styled";
-import { useEffect } from "react";
 
 const MatchListBody = styled.div`
   width: 100%;
   height: 50px;
   margin: 5px auto;
-  background-color: #ecf2ff;
+  background-color: ${({ color }) => (color ? "#ecf2ff" : "#FFF1F3")};
   padding: 0;
   display: flex;
   border-radius: 10px;
@@ -26,6 +25,11 @@ const MatchListItemText = styled.p`
   padding: 0;
 `;
 
+const CheckBox = styled.input`
+  width: 20px;
+  height: 20px;
+`;
+
 const MatchListItem = ({ data, changeSelect, select }) => {
   const SelectItem = (e) => {
     const id = e.target.dataset.id;
@@ -34,7 +38,7 @@ const MatchListItem = ({ data, changeSelect, select }) => {
   };
 
   return (
-    <MatchListBody>
+    <MatchListBody color={data.win}>
       <MatchListItemDiv width="30%">이미지</MatchListItemDiv>
       <MatchListItemDiv width="30%">
         <MatchListItemText>
@@ -45,7 +49,7 @@ const MatchListItem = ({ data, changeSelect, select }) => {
         <MatchListItemText>{data.time}</MatchListItemText>
       </MatchListItemDiv>
       <MatchListItemDiv width="10%">
-        <input
+        <CheckBox
           type="checkbox"
           onChange={SelectItem}
           data-id={data.id}

@@ -9,6 +9,7 @@ const SignUpBtn = styled.button`
   border-radius: 10px;
   margin-right: 10%;
   font-size: 17px;
+  cursor: pointer;
 `;
 
 const Button = ({ name, onClick }) => {

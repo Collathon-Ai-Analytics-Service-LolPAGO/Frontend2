@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { logout } from "store/actions";
 
 const PopupDiv = styled.div`
   width: 150px;
@@ -40,19 +41,27 @@ const TextP = styled.p`
 
 const Popup = ({ open, setOpen, modalRef }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
   const LoginFunc = () => {
     setOpen(false);
     navigate("/login");
   };
-  const [login, setLogin] = useState(false);
+
+  const LogoutFunc = () => {
+    dispatch(logout());
+    setOpen(false);
+    navigate("/");
+  };
   return (
     <PopupDiv open={open} ref={modalRef}>
       <ContentDiv>개인정보 변경</ContentDiv>
       <ContentDiv>내 분석 리포트</ContentDiv>
       <ContentDiv>결제 정보</ContentDiv>
-      <ContentDiv onClick={LoginFunc} style={{ border: "none" }}>
-        {login ? (
-          <TextP>로그아웃</TextP>
+      <ContentDiv style={{ border: "none" }}>
+        {isLoggedIn ? (
+          <TextP onClick={LogoutFunc}>로그아웃</TextP>
         ) : (
           <TextP onClick={LoginFunc}>로그인</TextP>
         )}

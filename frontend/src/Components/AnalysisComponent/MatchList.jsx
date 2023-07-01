@@ -10,8 +10,8 @@ const MatchListDiv = styled.div`
 `;
 
 const MatchListHead = styled.div`
-  width: calc(90% - 8px);
-  height: 10%;
+  width: calc(90%);
+  height: 50px;
   margin: 0 auto;
 `;
 
@@ -66,6 +66,13 @@ const StyledButton = styled.button`
   }
 `;
 
+const CheckBox = styled.input`
+  width: 20px;
+  height: 20px;
+  margin: auto;
+  vertical-align: middle;
+`;
+
 const DUMMY_DATA = [
   {
     id: 1,
@@ -77,6 +84,7 @@ const DUMMY_DATA = [
     spell: ["flash", "teleport"],
     rune: ["rune1", "rune2"],
     time: "2일 전",
+    win: true,
   },
   {
     id: 2,
@@ -88,6 +96,7 @@ const DUMMY_DATA = [
     spell: ["flash", "smite"],
     rune: ["rune1", "rune2"],
     time: "3일 전",
+    win: false,
   },
   {
     id: 3,
@@ -99,6 +108,7 @@ const DUMMY_DATA = [
     spell: ["flash", "smite"],
     rune: ["rune1", "rune2"],
     time: "3일 전",
+    win: true,
   },
   {
     id: 4,
@@ -110,6 +120,7 @@ const DUMMY_DATA = [
     spell: ["flash", "smite"],
     rune: ["rune1", "rune2"],
     time: "3일 전",
+    win: true,
   },
   {
     id: 5,
@@ -121,6 +132,7 @@ const DUMMY_DATA = [
     spell: ["flash", "smite"],
     rune: ["rune1", "rune2"],
     time: "3일 전",
+    win: false,
   },
   {
     id: 6,
@@ -132,6 +144,7 @@ const DUMMY_DATA = [
     spell: ["flash", "smite"],
     rune: ["rune1", "rune2"],
     time: "3일 전",
+    win: false,
   },
   {
     id: 7,
@@ -143,6 +156,7 @@ const DUMMY_DATA = [
     spell: ["flash", "smite"],
     rune: ["rune1", "rune2"],
     time: "3일 전",
+    win: false,
   },
 ];
 
@@ -153,19 +167,18 @@ const MatchList = () => {
   );
 
   useEffect(() => {
-    /*
-    console.log(selectRef.current.checked);
     let selected = true;
     for (let i = 0; i < select.length; i++) {
       if (!select[i]) {
-        selectRef.current.checked = false;
+        selected = false;
         break;
       }
     }
     if (selected) {
       selectRef.current.checked = true;
+    } else {
+      selectRef.current.checked = false;
     }
-    */
   }, [select]);
 
   const changeSelect = (id, checked) => {
@@ -193,8 +206,8 @@ const MatchList = () => {
           <MatchListTitleDiv width="30%">
             <MatchListTitleText>경기 시간</MatchListTitleText>
           </MatchListTitleDiv>
-          <MatchListTitleDiv width="calc(10% - 8px)">
-            <input type="checkbox" onChange={AllSelect} ref={selectRef} />
+          <MatchListTitleDiv width="10%">
+            <CheckBox type="checkbox" onChange={AllSelect} ref={selectRef} />
           </MatchListTitleDiv>
         </MatchListHead>
         <MatchListBody>

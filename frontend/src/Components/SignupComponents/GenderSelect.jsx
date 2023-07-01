@@ -37,32 +37,35 @@ const RadiosDiv = styled.form`
   }
 `;
 
-const GenderSelect = () => {
-  const [gender, setGender] = useState("male");
+const RadioBtn = styled.input`
+  width: 18px;
+  height: 18px;
+`;
 
+const GenderSelect = ({ target, value, onInputChange, ...props }) => {
   const handleChangeGender = (e) => {
-    setGender(e.target.value);
+    onInputChange(target, e.target.value);
   };
 
   return (
     <Field>
       <InputParagraph>성별</InputParagraph>
       <RadiosDiv>
-        <input
+        <RadioBtn
           type="radio"
           id="male"
           name="male"
           value="male"
-          checked={gender === "male"}
+          checked={value === "male"}
           onChange={handleChangeGender}
         />
         <label for="male">남성</label>
-        <input
+        <RadioBtn
           type="radio"
           id="female"
           name="female"
           value="female"
-          checked={gender === "female"}
+          checked={value === "female"}
           onChange={handleChangeGender}
         />
         <label for="female">여성</label>

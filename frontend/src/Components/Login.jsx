@@ -2,6 +2,9 @@ import styled from "@emotion/styled";
 import { InputField, Button } from "./SignupComponents";
 import { errorText } from "../constants/ErrorMsg";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../store/actions";
 
 const MainDiv = styled.div`
   width: 100%;
@@ -55,11 +58,46 @@ const ButtonSection = styled.div`
 `;
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const SignUp = () => {
+  const [value, setValue] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [error, setError] = useState({
+    email: false,
+    password: false,
+  });
+
+  const handleInputValue = (inputName, inputValue) => {
+    setValue((prevValue) => ({
+      ...prevValue,
+      [inputName]: inputValue,
+    }));
+  };
+
+  const setLoginValue = () => {
+    setError({
+      email: value.email === "" ? true : false,
+      password: value.password === "" ? true : false,
+    });
+
+    if (value.email !== "" && value.password !== "") {
+      dispatch(login());
+      navigate("/");
+    }
+  };
+
+  useEffect(() => {
+    console.log(error);
+  }, [error]);
+
+  const signUp = () => {
     navigate("/signup");
   };
+
   return (
     <MainDiv>
       <SignUpField>
@@ -72,17 +110,25 @@ const Login = () => {
             text={errorText["email"]}
             style={{ marginBottom: "30px" }}
             placeholder="이메일을 입력해주세요."
+            target="email"
+            value={value.email}
+            error={error.email}
+            onInputChange={handleInputValue}
           />
           <InputField
             name="비밀번호"
             text={errorText["password"]}
             style={{ marginBottom: "30px" }}
             placeholder="비밀번호를 입력해주세요."
+            target="password"
+            value={value.password}
+            error={error.password}
+            onInputChange={handleInputValue}
           />
         </InputFieldSection>
         <ButtonSection>
-          <Button name="로그인" />
-          <Button name="회원가입" onClick={SignUp} />
+          <Button name="로그인" onClick={setLoginValue} />
+          <Button name="회원가입" onClick={signUp} />
         </ButtonSection>
       </SignUpField>
     </MainDiv>

@@ -1,7 +1,9 @@
-import { React } from "react";
+import { React, useEffect } from "react";
 import styled from "@emotion/styled";
 import user from "Assets/profile-user.png";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "store/actions";
 
 const BannerDiv = styled.div`
   width: 100;
@@ -52,13 +54,23 @@ const UserTd = styled.td`
 `;
 const Banner = ({ open, setOpen, openRef }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
+  useEffect(() => {
+    console.log(isLoggedIn);
+  }, [isLoggedIn]);
 
   const SignUp = () => {
     navigate("/signup");
   };
 
-  const Login = () => {
-    navigate("/login");
+  const LogInOut = () => {
+    if (isLoggedIn) {
+      dispatch(logout());
+    } else {
+      navigate("/login");
+    }
   };
 
   const Popup = () => {
@@ -70,7 +82,9 @@ const Banner = ({ open, setOpen, openRef }) => {
       <UserTable>
         <tr>
           <SignUpTd onClick={SignUp}>회원가입</SignUpTd>
-          <LoginTd onClick={Login}>로그인</LoginTd>
+          <LoginTd onClick={LogInOut}>
+            {isLoggedIn ? "로그아웃" : "로그인"}
+          </LoginTd>
           <UserTd onClick={Popup} ref={openRef}>
             <UserImg src={user} alt="user" />
           </UserTd>

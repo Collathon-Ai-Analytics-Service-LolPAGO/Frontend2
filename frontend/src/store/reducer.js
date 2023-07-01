@@ -1,17 +1,24 @@
 import { LOGIN, LOGOUT } from "./types";
 
-const rootReducer = (state = { login: false }, action) => {
+const initialState = {
+  isLoggedIn: false,
+};
+
+const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOGIN: {
-      return { ...state, login: true };
-    }
-    case LOGOUT: {
-      return { ...state, login: false };
-    }
-    default: {
+    case LOGIN:
+      return {
+        ...state,
+        isLoggedIn: true,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        isLoggedIn: false,
+      };
+    default:
       return state;
-    }
   }
 };
 
-export default rootReducer;
+export default reducer;

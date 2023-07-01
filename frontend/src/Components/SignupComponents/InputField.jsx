@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Field = styled.div`
   border: 1px solid white;
@@ -24,7 +24,7 @@ const InputParagraph = styled.p`
 `;
 
 const InputText = styled.input`
-  width: 58%;
+  width: 45%;
   margin-left: 5%;
   margin-right: 2%;
   background-color: inherit;
@@ -48,17 +48,21 @@ const InputDate = styled.input`
   &::before {
     color: white;
   }
+
+  ::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+  }
 `;
 
 const ErrorMsg = styled.p`
   width: 500px;
-  line-height: 20px;
+  height: 25px;
   color: red;
   font-size: 13px;
   text-align: left;
   padding-left: 20px;
   box-sizing: border-box;
-  margin: 5px 0;
+  margin: 2px 0;
   visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
 `;
 
@@ -79,22 +83,48 @@ const InputField = ({
   type,
   isDuplicate,
   placeholder,
+  target,
+  value,
+  error,
+  duplicateText,
+  duplicateValue,
+  duplicateError,
+  onInputChange,
   ...props
 }) => {
-  const [error, setError] = useState(true);
+  const handleChange = (e) => {
+    onInputChange(target, e.target.value); // Login 컴포넌트로 값을 전달
+  };
+
+  const checkDuplicate = () => {
+    if (value !== "") {
+      onInputChange("checkDuplicate", true);
+    }
+  };
+
   return (
     <>
       <Field>
         <InputParagraph>{name}</InputParagraph>
         {type ? (
-          <InputDate type={type} />
+          <InputDate type={type} data-target={target} onChange={handleChange} />
         ) : (
-          <InputText type="text" maxLength={20} placeholder={placeholder} />
+          <InputText
+            type="text"
+            maxLength={20}
+            placeholder={placeholder}
+            onChange={handleChange}
+            value={value}
+          />
         )}
-        {isDuplicate ? <DuplicateBtn>중복확인</DuplicateBtn> : <></>}
+        {isDuplicate ? (
+          <DuplicateBtn onClick={checkDuplicate}>중복확인</DuplicateBtn>
+        ) : (
+          <></>
+        )}
       </Field>
-      <ErrorMsg visible={error} {...props}>
-        {text}
+      <ErrorMsg visible={error || duplicateError} {...props}>
+        {error ? text : duplicateError && duplicateText}
       </ErrorMsg>
     </>
   );
